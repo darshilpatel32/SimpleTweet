@@ -35,7 +35,7 @@
         tools:text="This is my Tweet!!!" />
 
     <TextView
-        android:id="@+id/tvTime"
+        android:id="@+id/tvTimestamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

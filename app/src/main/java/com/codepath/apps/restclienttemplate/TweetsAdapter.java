@@ -15,18 +15,17 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
 
-public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
+public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
     Context context;
     List<Tweet> tweets;
-
-    //Pass in context and list of tweets
-    public TweetsAdapter(Context context, List<Tweet> tweets) {
+    // pass in the context and list of tweets
+    public TweetsAdapter(Context context, List<Tweet> tweets){
         this.context = context;
         this.tweets = tweets;
     }
 
-    //For each row we will inflate the layout
+    // for each row, inflate the layout
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,12 +33,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
-    //Bind values based on the positions of the element
+    // bind values based on the position of the element
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //Get the data at position
+        //get the data at position
         Tweet tweet = tweets.get(position);
-        //Bind the tweet with the view holder
+        //bind the tweet with the view holder
         holder.bind(tweet);
     }
 
@@ -55,32 +54,31 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     // Add a list of items -- change to type used
-    public void addAll(List<Tweet> tweetList){
+    public void addAll(List <Tweet> tweetList){
         tweets.addAll(tweetList);
         notifyDataSetChanged();
+
     }
 
-    //Pass in context and list of tweets
-
+    // define a viewholder
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
-        TextView tvTime;
+        TextView tvTimestamp;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView){
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
-            tvTime = itemView.findViewById(R.id.tvTime);
+            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
-            tvTime.setText(tweet.getFormattedTimeStamp(tweet.createdAt));
+            tvTimestamp.setText(tweet.getFormattedTimestamp(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
         }
     }
